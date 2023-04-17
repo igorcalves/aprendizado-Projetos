@@ -39,7 +39,7 @@ public class Aluguel {
 
     @Override
     public String toString() {
-        return "\nAluguel \nname= " + name + "  email= " + email + "  room= " + room;
+        return "\nname= " + name + "  email= " + email + "  room= " + room;
     }
 
     
