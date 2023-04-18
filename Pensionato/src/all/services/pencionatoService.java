@@ -2,11 +2,11 @@ package all.services;
 
 import java.util.Scanner;
 
-import all.entities.Aluguel;
+import all.entities.Rent;
 
 public class pencionatoService {
      Scanner sc = new Scanner(System.in);
-     private Aluguel[] aluguel = new Aluguel[10];
+     private Rent[] rents = new Rent[10];
     
     public int studantDataInput(){
         System.out.print("Digite o numero de estudandes: ");
@@ -33,8 +33,8 @@ public class pencionatoService {
             name = writeName();
             email = writeEmail();
             room = writeRoom();
-            Aluguel a = new Aluguel(name, email, room);
-            aluguel[room] = a;
+            Rent newRent = new Rent(name, email, room);
+            allocateRoom(room, newRent);
         }
         
         sc.close();
@@ -74,13 +74,20 @@ public class pencionatoService {
         return Integer.parseInt(room);
     }
 
+    public void allocateRoom(int room, Rent newRent){
+        while(!validations.emptyRoom(rents, room)){
+            System.out.println("O quarto " + room + " esta ocupado tente novamente!\n");
+            room = writeRoom();
+        }
+        rents[room] = newRent;
+    }
 
 
     
     public void allRegistre(){
-        for (int i = 0; i < aluguel.length; i++) {
-            if(aluguel[i] != null){
-                System.out.println(aluguel[i]);
+        for (int i = 0; i < rents.length; i++) {
+            if(rents[i] != null){
+                System.out.println(rents[i]);
             }
         }
         

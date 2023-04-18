@@ -1,6 +1,6 @@
 package all.entities;
 
-public class Aluguel {
+public class Rent {
 
     private String name;
 
@@ -8,10 +8,10 @@ public class Aluguel {
 
     private int room;
     
-    public Aluguel() {
+    public Rent() {
     }
 
-    public Aluguel(String name, String email, int room) {
+    public Rent(String name, String email, int room) {
         this.name = name;
         this.email = email;
         this.room = room;

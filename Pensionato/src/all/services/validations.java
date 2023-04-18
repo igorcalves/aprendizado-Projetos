@@ -2,9 +2,12 @@ package all.services;
 
 import java.util.regex.Pattern;
 
+import all.entities.Rent;
+
 public class validations {
 
     public static boolean IsValidNumeric(String numeric){
+        if(numeric.isBlank()) return false; 
        try {
             Integer.parseInt(numeric);
             return true;
@@ -42,6 +45,15 @@ public class validations {
                             "A-Z]{2,7}$";
         Pattern pattern = Pattern.compile(emailRegex);
         return pattern.matcher(email).matches();
+    }
+
+    public static boolean emptyRoom(Rent[] rent, int room){
+        if(rent[room] ==null){
+            return true;
+        }else{
+            return false;
+        }
+
     }
     
     
