@@ -1,6 +1,9 @@
 package all.services;
 
+import java.util.List;
 import java.util.regex.Pattern;
+
+import all.entities.Employee;
 
 public class validations {
 
@@ -13,6 +16,16 @@ public class validations {
         }
 
     }
+
+    public static boolean isValidDoubleNumeric(String numeric){
+        try {
+             Double.parseDouble(numeric);
+             return true;
+         } catch (NumberFormatException e) {
+             return false;
+         }
+ 
+     }
 
     public  static boolean rangeNumeric(String numberInString){
         if(IsValidNumeric(numberInString)){
@@ -43,6 +56,24 @@ public class validations {
         Pattern pattern = Pattern.compile(emailRegex);
         return pattern.matcher(email).matches();
     }
+
+    public static Boolean listContainsId(List<Employee> list, String idString){
+        Boolean idIsTrue = false;
+        int id = Integer.parseInt(idString);
+        
+        for (Employee employee : list) {
+            if((employee.getId() == id)){
+                idIsTrue = true;
+            }
+        }
+        
+        if(idIsTrue){
+            return true;
+            }
+        return false;
+
+    }
+
     
     
     
