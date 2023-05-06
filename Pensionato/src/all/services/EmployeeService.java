@@ -11,7 +11,7 @@ public class EmployeeService {
     List<Employee> list = new ArrayList<>();
     
     public int dataEmployeeInput(){
-        System.out.println("Digite a quantidade de de funcionarios para cadastro: ");
+        System.out.print("Digite a quantidade de de funcionarios para cadastro: ");
         String nEmployee = sc.nextLine();
         int numericFomarmated = 0;
 
@@ -68,12 +68,15 @@ public class EmployeeService {
         System.out.print("Digite o ID do Colaborador: ");
         String id = sc.nextLine();
         while(true){
-            if(!validations.IsValidNumeric(id)){
-                
-            break;
+            if(validations.IsValidNumeric(id)){
+                if(validations.listContainsId(list, id)){
+                    System.out.print("Id já existe digite  o valor novamente: ");
+                     id = sc.nextLine();
+                }else break;
+            }else{
+                System.out.print("ID Invalido Digite novamente !!!!\nDigite o ID do Colaborador: ");
+                id = sc.nextLine();
             }
-            System.out.print("ID Invalido Digite novamente !!!!\nDigite o ID do Colaborador: ");
-            id = sc.nextLine();
         }
         return Integer.parseInt(id);
     }

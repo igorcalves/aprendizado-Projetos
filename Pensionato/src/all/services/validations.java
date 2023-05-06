@@ -62,11 +62,10 @@ public class validations {
         int id = Integer.parseInt(idString);
         
         for (Employee employee : list) {
-            if((employee.getId() == id)){
+            if((id == employee.getId())){
                 idIsTrue = true;
             }
         }
-        
         if(idIsTrue){
             return true;
             }
