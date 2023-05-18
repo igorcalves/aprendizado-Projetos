@@ -83,7 +83,7 @@ public class EmployeeService {
     }
 
     private int writeIdForIncreaseWage(){
-        System.out.print("Digite o Localizar o funcionario: ");
+        System.out.print("Digite o id Localizar o funcionario: ");
         String id = sc.nextLine();
         while(!validations.IsValidNumeric(id)){
             System.out.println("valor Invalido!!!\ndigite um numero inteiro valido: ");
@@ -107,13 +107,18 @@ public class EmployeeService {
 
     private void increaseWage(){
         int id = writeIdForIncreaseWage();
+        if(!validations.listContainsId(list, id)) {
+            System.out.println("id não existe");
+            return;
+        }
         int increasePercent = writePercent();
         Employee e = null;
 
         if(validations.listContainsId(list, id)){
             e = validations.findEmployeeById(list, id);
-            if(e == null) return;
         }
+        if(e == null) return;
+        System.out.println("passou");
         e.increaseWage(increasePercent);
         
             
