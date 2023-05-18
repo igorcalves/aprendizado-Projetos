@@ -118,8 +118,6 @@ public class EmployeeService {
             e = validations.findEmployeeById(list, id);
         }
         if(e == null) return;
-        System.out.println("passou");
-        
         e.increaseWage(increasePercent);
         
             
