@@ -38,6 +38,7 @@ public class EmployeeService {
 
             list.add(new Employee(id, name, wage));
         }
+        increaseWage();
         sc.close();
     }
 
@@ -80,6 +81,44 @@ public class EmployeeService {
         }
         return Integer.parseInt(id);
     }
+
+    private int writeIdForIncreaseWage(){
+        System.out.print("Digite o Localizar o funcionario: ");
+        String id = sc.nextLine();
+        while(!validations.IsValidNumeric(id)){
+            System.out.println("valor Invalido!!!\ndigite um numero inteiro valido: ");
+            id = sc.nextLine();
+        }
+        return Integer.parseInt(id);
+    }
+
+    private int writePercent(){
+        System.out.print("Digite a porcentagem: ");
+        String Percent = sc.nextLine();
+
+        while(!validations.IsValidNumeric(Percent)){
+            System.out.println("Valor invalido!!!\ndigite um numero inteiro valido: ");
+            Percent = sc.nextLine();
+        }
+        return Integer.parseInt(Percent);
+       
+    }
+
+
+    private void increaseWage(){
+        int id = writeIdForIncreaseWage();
+        int increasePercent = writePercent();
+        Employee e = null;
+
+        if(validations.listContainsId(list, id)){
+            e = validations.findEmployeeById(list, id);
+            if(e == null) return;
+        }
+        e.increaseWage(increasePercent);
+        
+            
+    }
+    
 
     public void allRegistre(){
         for(Employee e: list){

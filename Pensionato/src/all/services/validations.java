@@ -73,6 +73,31 @@ public class validations {
 
     }
 
+    public static Boolean listContainsId(List<Employee> list, int id){
+        Boolean idIsTrue = false;
+        for (Employee employee : list) {
+            if((id == employee.getId())){
+                idIsTrue = true;
+            }
+        }
+        if(idIsTrue){
+            return true;
+            }
+        return false;
+
+    }
+
+    public static Employee findEmployeeById(List<Employee> list, int id){
+        Employee validEmployee = null;
+        for(Employee e: list){
+            if(e.getId() == id){
+                validEmployee = e ;
+            } 
+        }
+        return validEmployee;
+        
+    }
+
     
     
     

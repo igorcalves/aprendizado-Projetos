@@ -31,9 +31,9 @@ public class Employee {
         return wage;
     }
 
-    public Double increaseWage(double percentIncreaseWage){
-        Double value = this.getWage() * ((percentIncreaseWage / 100)+1);
-        return value;
+    public void increaseWage(double percentIncreaseWage){
+    this.wage = this.getWage() * ((percentIncreaseWage / 100)+1);
+
     }
 
 
