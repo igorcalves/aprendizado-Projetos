@@ -98,6 +98,15 @@ public class validations {
         
     }
 
+    public static Boolean validPositionInMatriz(int matriz[][],int m,int n){
+
+        if (m >= 0 && m < matriz.length && n >= 0 && n < matriz[m].length) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     
     
     
