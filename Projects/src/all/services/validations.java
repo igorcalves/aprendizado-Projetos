@@ -107,7 +107,39 @@ public class validations {
         }
     }
     
-    
-    
-    
+    public static Boolean repeatedNumbers(int numerosSorteadosMaquina[], int numeroSortado){
+        for (int i = 0; i < numerosSorteadosMaquina.length; i++) {
+            if(numerosSorteadosMaquina[i]==numeroSortado){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static Boolean matchNumbers(int vetorMaquina[], int vetorJogador[], int posJogador){
+        for (int i = 0; i < vetorJogador.length; i++) {
+            if(vetorJogador[posJogador] == vetorMaquina[i]){
+                return true;
+            }
+            
+        }return false;
+    }
+
+    public static int countMatchingNumbers(int vetorMaquina[], int vetorJogador[]) {
+        int count = 0;
+        
+        for (int i = 0; i < vetorMaquina.length; i++) {
+            for (int j = 0; j < vetorJogador.length; j++) {
+                if (vetorMaquina[i] == vetorJogador[j]) {
+                    count++;
+                    break;  // Avança para o próximo número em vetor1
+                }
+            }
+        }
+        
+        return count;
+    }
 }
+    
+    
+
