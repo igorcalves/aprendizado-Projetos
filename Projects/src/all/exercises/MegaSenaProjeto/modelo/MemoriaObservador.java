@@ -1,7 +1,7 @@
 package all.exercises.MegaSenaProjeto.modelo;
 
-@FunctionalInterface
 public interface MemoriaObservador {
     
-    public void ValorAlterado(String novoValor);
+    public void ValorAlteradoDisplayTentativas(String novoValor);
+    public void ValorAlteradoDisplayJogador(String novoValor);
 }

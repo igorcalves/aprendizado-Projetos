@@ -27,9 +27,17 @@ public class Memoria {
         return textoAtual.isEmpty() ? "0" : textoAtual;
     }
 
-    public void processarComando(String texto) {
-        textoAtual = texto;
-        observadores.forEach(o -> o.ValorAlterado(getTextoAtual()));
+    public void processarComando(String texto,boolean mod) {
+
+        if(mod){
+            textoAtual = texto;
+            observadores.forEach(o -> o.ValorAlteradoDisplayTentativas(getTextoAtual()));
+
+        }  else{
+            textoAtual = texto;
+            observadores.forEach(o -> o.ValorAlteradoDisplayJogador(getTextoAtual()));
+        }
+
     }
 
 }

@@ -139,6 +139,13 @@ public class validations {
         
         return count;
     }
+
+    public static boolean checkarArrayVazio(int vetor[]){
+        if(vetor[0] == 0){
+            return true;
+        }else return false;
+    }
+
 }
     
     

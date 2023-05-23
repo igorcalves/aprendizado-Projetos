@@ -63,7 +63,7 @@ public class MegaSenaTela extends JFrame {
         panelTentativas.setLayout(new FlowLayout(FlowLayout.CENTER));
         labelTentativas = new Labels("Tentativas: ");
 
-        JLabel DisplayTentativas = new Labels("0",Color.white);
+        JPanel DisplayTentativas = new DisplayTentativas();
 
         panelTentativas.add(labelTentativas);
         panelTentativas.add(DisplayTentativas);
@@ -74,7 +74,7 @@ public class MegaSenaTela extends JFrame {
         JPanel panelNumeroJogador = new JPanel();
         panelNumeroJogador.setLayout(new FlowLayout(FlowLayout.CENTER));
         labelNumeroJogador = new Labels("N° Jogador: ");
-        JPanel labelValorNumeroJogador = new Display(service,false);
+        JPanel labelValorNumeroJogador = new DisplayJogador();
 
         panelNumeroJogador.add(labelNumeroJogador);
         panelNumeroJogador.add(labelValorNumeroJogador);
@@ -84,7 +84,7 @@ public class MegaSenaTela extends JFrame {
         // Criação dos componentes da quinta linha
         JPanel panelJogar = new JPanel();
         panelJogar.setLayout(new FlowLayout(FlowLayout.CENTER));
-        buttonJogar = new Botao("Jogar", Color.green,service);
+        buttonJogar = new Botao("Jogar", Color.green,service,displayNSorteio);
         panelJogar.add(buttonJogar);
         panelJogar.setBackground(new Color(50, 50, 50));
         panelPrincipal.add(panelJogar);

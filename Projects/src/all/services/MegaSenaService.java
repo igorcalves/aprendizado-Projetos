@@ -3,6 +3,7 @@ package all.services;
 import java.util.Random;
 
 import all.exercises.MegaSenaProjeto.modelo.Memoria;
+import all.exercises.MegaSenaProjeto.view.TelaVitoria;
 
 
 
@@ -12,6 +13,8 @@ public class MegaSenaService {
 
     private Random random = new Random();
     private int numerosSorteadosMaquina[] = new int [6];
+    
+
     private int numerosSorteadosJogador[] = new int [6];
     public  int tentativas = 0;
     private double preco = 0;
@@ -32,14 +35,11 @@ public class MegaSenaService {
 
     public void jogar(){
         sortearNumeros(numerosSorteadosJogador);
-        if(numerosSorteadosMaquina[1] ==0){
+
+        if(validations.checkarArrayVazio(numerosSorteadosMaquina)){
             sortearNumeros(numerosSorteadosMaquina);
             compararNumeros(numerosSorteadosMaquina, numerosSorteadosJogador);
-        }else{
-            loopSeletivo(numerosSorteadosMaquina);
-        compararNumeros(numerosSorteadosMaquina, numerosSorteadosJogador);
-       }
-
+        }else compararNumeros(numerosSorteadosMaquina, numerosSorteadosJogador);
        }
 
     public void sortear(){
@@ -51,33 +51,20 @@ public class MegaSenaService {
         while (!ganhou) {
             sortearNumeros(numerosSorteadosJogador);
             tentativas++;
-            Memoria.getIntancia().processarComando(Integer.toString(tentativas));
             preco +=5;
             int numerosCorrespondentes = validations.countMatchingNumbers(vetorMaquina, vetorJogador);
-            if(numerosCorrespondentes >=4){
-                System.out.println("Tentativa: " + tentativas);
-                System.out.print("Números Sorteados da Mega Sena: ");
-                loopSeletivo(numerosSorteadosMaquina);
-                System.out.print("Números Jogados: ");
-                loopSeletivo(numerosSorteadosJogador);
-                System.out.println("Números correspondentes: " + numerosCorrespondentes);
-            }
+
             if (numerosCorrespondentes == 6) {
+                Memoria.getIntancia().processarComando(Integer.toString(tentativas),true);
+                Memoria.getIntancia().processarComando(getNumerosSorteadosJogadorString(),false);
                 ganhou = true;
             }
         }
-        
-        System.out.println("Ganhou!");
-        System.out.println("Gastou " + preco + " reais");
+        TelaVitoria telaVitoria = new TelaVitoria();
+        telaVitoria.atualizarValor(Double.toString(preco));
+        ganhou = false ;
     }   
     
-    
-    
-    private void loopSeletivo(int numerosSorteados[]){
-        for (int i = 0; i < numerosSorteados.length; i++) {
-            System.out.print(numerosSorteados[i]+ " ");
-        }
-    }
 
     public String getNumerosSorteadosMaquinaString(){
         String numerosMaquina = "";
@@ -85,6 +72,14 @@ public class MegaSenaService {
             numerosMaquina += numerosSorteadosMaquina[i]+ " ";
         }
         return numerosMaquina;
+    }
+
+    public String getNumerosSorteadosJogadorString(){
+        String numeroJogador = "";
+        for (int i = 0; i < numerosSorteadosJogador.length; i++) {
+            numeroJogador += numerosSorteadosJogador[i]+ " ";
+        }
+        return numeroJogador;
     }
     
     public String getTentativas() {
@@ -96,6 +91,9 @@ public class MegaSenaService {
         return preco;
     }
 
+    public int[] getNumerosSorteadosMaquina() {
+        return numerosSorteadosMaquina;
+    }
 
 
 }
