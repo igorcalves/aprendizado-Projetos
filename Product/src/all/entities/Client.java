@@ -1,20 +1,22 @@
 package all.entities;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class Client {
 
-    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     private String name;
     private String email;
-    private Date birthDay;
+    private LocalDate birthDay;
 
     public Client() {
     }
 
-    public Client(String name, String email, Date birthDay) {
+    public Client(String name, String email, LocalDate birthDay) {
         this.name = name;
         this.email = email;
         this.birthDay = birthDay;
@@ -36,11 +38,11 @@ public class Client {
         this.email = email;
     }
 
-    public Date getBirthDay() {
+    public LocalDate getBirthDay() {
         return birthDay;
     }
 
-    public void setBirthDay(Date birthDay) {
+    public void setBirthDay(LocalDate birthDay) {
         this.birthDay = birthDay;
     }
 
@@ -49,7 +51,7 @@ public class Client {
         StringBuilder sb = new StringBuilder();
         sb.append("Name: " + name + "\n");
         sb.append("Email: " + email + "\n");
-        sb.append("Birthday: " + sdf.format(birthDay) + "\n");
+        sb.append("Birthday: " + birthDay.format(formatter) + "\n");
 
         return sb.toString();
     }
