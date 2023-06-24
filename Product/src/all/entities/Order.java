@@ -76,7 +76,7 @@ public class Order {
 
         StringBuilder sb = new StringBuilder(); 
         sb.append("momment: " + momment.format(formatter) + "\n");
-        sb.append("Status: " + OrderStatus.PROCESSING + "\n");
+        sb.append("Status: " + status.toString() + "\n");
         sb.append(client + "\n");
         for (OrderItem orderItem : orderItems) {
             sb.append(orderItem.getProduct().getName() + ", ");

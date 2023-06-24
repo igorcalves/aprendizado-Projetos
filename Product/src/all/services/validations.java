@@ -31,7 +31,7 @@ public class validations {
     public static boolean rangeNumeric(String numberInString) {
         if (IsValidNumeric(numberInString)) {
             int number = Integer.parseInt(numberInString);
-            if (number >= 0 && number <= 9) {
+            if (number >= 1 && number <= 4) {
                 return true;
             }
         }

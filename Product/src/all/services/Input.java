@@ -33,8 +33,24 @@ public class Input {
     }
 
     private void order(){
-        System.out.print("Entry with Order Status: ");
-        String status = sc.nextLine();
+        System.out.print("Switch Order Status\n1 - PENDING_PAYMENT\n2 - PROCESSING\n3 - SHIPPED\n4 - DELIVERED\n");
+        Integer switchStatus = writeIntegerValueWithRestrition();
+        String status = "";
+        switch(switchStatus){
+            case 1:
+            status = OrderStatus.PENDING_PAYMENT.toString();
+            break;
+            case 2:
+            status = OrderStatus.PROCESSING.toString();
+            break;
+            case 3:
+            status = OrderStatus.SHIPPED.toString();
+            break;
+            case 4:
+            status = OrderStatus.DELIVERED.toString();
+            break;
+        }
+
         order = new Order(LocalDateTime.now(), OrderStatus.valueOf(status), client);
         int quantityItems = howManyProducts();
         
@@ -48,7 +64,7 @@ public class Input {
     public OrderItem dataInputOrderItems(){
         Product productCreated = dataInputProducts();
         System.out.println("Entry with Quantity of product: " + productCreated.getName());
-        Integer quantity = writeIntegerValue();
+        Integer quantity = writeIntegerValue(null);
         orderItem = new OrderItem(quantity, product);
         return orderItem;
     }
@@ -71,17 +87,9 @@ public class Input {
 
     public int howManyProducts(){
         System.out.print("how many items do you want to enter: ");
-        String quantityItems = sc.nextLine();
-        int numberFomarted = 0;
-
-        if(validations.IsValidNumeric(quantityItems)){
-            numberFomarted = Integer.parseInt(quantityItems);
-        }else{
-                System.out.println("!!!Invalid Number!!!\nTry again!!!!\nRules:\n1° Only numbers\n2° Can't be a letter\n3° Can't be a null value");
-                howManyProducts(); 
-        }
-        
-        return numberFomarted;
+        String errorMessage = "!!!Invalid Number!!!\nTry again!!!!\nRules:\n1° Only numbers\n2° Can't be a letter\n3° Can't be a null value\n value: ";
+        Integer quantityItems = writeIntegerValue(errorMessage);
+        return quantityItems;
     }
 
 
@@ -134,11 +142,28 @@ public class Input {
         return Double.parseDouble(price);
     }
 
-    private Integer writeIntegerValue(){
+    private Integer writeIntegerValue(String errorMessage){
         System.out.print("Value: ");
         String value = sc.nextLine();
         while(true){
             if(validations.IsValidNumeric(value)){
+            break;
+            }
+            if(errorMessage == null){
+                System.out.println("Invalid Value!!!!\nValue: ");
+            }else{
+                System.out.print(errorMessage);
+            }
+            value = sc.nextLine();
+        }
+
+        return Integer.parseInt(value);
+    }
+    private Integer writeIntegerValueWithRestrition(){
+        System.out.print("Value: ");
+        String value = sc.nextLine();
+        while(true){
+            if(validations.IsValidNumeric(value) && validations.rangeNumeric(value)){
             break;
             }
             System.out.print("Invalid Value!!!!\nValue: ");
