@@ -1,5 +1,7 @@
 package all.services;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -53,6 +55,27 @@ public class validations {
                             "A-Z]{2,7}$";
         Pattern pattern = Pattern.compile(emailRegex);
         return pattern.matcher(email).matches();
+    }
+
+    public static boolean isValidDate(String date){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        
+        if(date.isBlank()) return false;
+        try {
+            LocalDate.parse(date,formatter);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public static boolean tagValidation(String tag){
+        if (tag.isBlank()) return false;
+
+        if(tag.equalsIgnoreCase("c")|| tag.equalsIgnoreCase("u") || tag.equalsIgnoreCase("i")){
+            return true;
+        }
+        return false;
     }
 
 
