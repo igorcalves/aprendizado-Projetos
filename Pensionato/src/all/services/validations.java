@@ -3,8 +3,6 @@ package all.services;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import all.entities.Employee;
-
 public class validations {
 
     public static boolean IsValidNumeric(String numeric){
@@ -57,46 +55,6 @@ public class validations {
         return pattern.matcher(email).matches();
     }
 
-    public static Boolean listContainsId(List<Employee> list, String idString){
-        Boolean idIsTrue = false;
-        int id = Integer.parseInt(idString);
-        
-        for (Employee employee : list) {
-            if((id == employee.getId())){
-                idIsTrue = true;
-            }
-        }
-        if(idIsTrue){
-            return true;
-            }
-        return false;
-
-    }
-
-    public static Boolean listContainsId(List<Employee> list, int id){
-        Boolean idIsTrue = false;
-        for (Employee employee : list) {
-            if((id == employee.getId())){
-                idIsTrue = true;
-            }
-        }
-        if(idIsTrue){
-            return true;
-            }
-        return false;
-
-    }
-
-    public static Employee findEmployeeById(List<Employee> list, int id){
-        Employee validEmployee = null;
-        for(Employee e: list){
-            if(e.getId() == id){
-                validEmployee = e ;
-            } 
-        }
-        return validEmployee;
-        
-    }
 
     
     
