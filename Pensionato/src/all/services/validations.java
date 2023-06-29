@@ -72,7 +72,7 @@ public class validations {
     public static boolean tagValidation(String tag){
         if (tag.isBlank()) return false;
 
-        if(tag.equalsIgnoreCase("c")|| tag.equalsIgnoreCase("u") || tag.equalsIgnoreCase("i")){
+        if(tag.equalsIgnoreCase("N")|| tag.equalsIgnoreCase("L")){
             return true;
         }
         return false;
