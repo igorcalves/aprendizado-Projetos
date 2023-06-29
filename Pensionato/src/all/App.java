@@ -1,20 +1,21 @@
 package all;
 
 
-import java.util.ArrayList;
-import java.util.List;
+import all.entities.LegalPerson;
+import all.entities.NaturalPerson;
+import all.entities.TaxPayer;
 
-import all.services.dataInputProduct;
-import all.services.validations;
 
 
 public class App {
 
     public static void main(String[] args) {
 
-        dataInputProduct dpi  = new dataInputProduct();
+        TaxPayer np = new LegalPerson("Igor", 400000.0, 1);
 
-        dpi.atomicCreateWithRead();
+        System.out.println(String.format("%.2f", np.tax()));
+
+
   
 }
 }
